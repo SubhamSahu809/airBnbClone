@@ -17,7 +17,7 @@ const localStrategy = require("passport-local");
 const User = require("./models/user.js");
 
 app.get("/", (req, res) => {
-    res.render("index.ejs");
+    res.render("listings/index.ejs");
 });
 
 const listingsRouter = require("./routes/listing.js");
