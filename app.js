@@ -16,6 +16,9 @@ const passport = require("passport");
 const localStrategy = require("passport-local");
 const User = require("./models/user.js");
 
+app.get("/", (req, res) => {
+    res.render("index.ejs");
+});
 
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
@@ -85,16 +88,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// // demoUser Route With demo Data
-// app.get("/demouser", async(req, res) => {
-//     let fakeUser = new User({
-//         email: "student@gmail.com",
-//         username: "delta-student",
-//     });
-
-//     let registeredUser = await User.register(fakeUser, "hellouser");
-//     res.send(registeredUser);
-// });
 
 app.use("/listings/:id/reviews", reviewsRouter); 
 app.use("/", userRouter); 
