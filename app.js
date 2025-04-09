@@ -15,14 +15,13 @@ const flash = require("express-flash");
 const passport = require("passport");
 const localStrategy = require("passport-local");
 const User = require("./models/user.js");
+const Listing = require("./models/listing.js");
 
-app.get("/", (req, res) => {
-    res.render("listings/index.ejs");
-});
 
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+const wrapAsync = require("./utils/wrapAsync.js");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -88,11 +87,14 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get("/",wrapAsync(async(req, res) => {
+    const allListings = await Listing.find({});
+    res.render("listings/index.ejs", {allListings});
+}));
 
-app.use("/listings/:id/reviews", reviewsRouter); 
+app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter); 
 app.use("/listings", listingsRouter);
-
 
 
 // if above don't execute, then it's called; Worked for any route
