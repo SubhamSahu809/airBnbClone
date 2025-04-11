@@ -2,7 +2,7 @@
 
 **Wanderlust** is a full-stack web application for listing and booking properties. It allows users to sign up, log in, create property listings, leave reviews, and explore properties on an interactive map.
 
-🚀 Live Demo: Wanderlust on Render
+🚀 Live Demo: [https://wonderlust-dvss.onrender.com](https://wonderlust-dvss.onrender.com)
 ---
 
 ## ✨ Features
@@ -157,6 +157,7 @@ You can add some images here from your views (e.g., home page, listing page, rev
 -Admin dashboard
 -Pagination for listings/reviews
 -Email verification
+
 
 
 🧑‍💻 Author
