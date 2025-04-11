@@ -1,0 +1,113 @@
+<body>
+  <div class="filter-container-wrapper sticky-top row">
+    <button class="scroll-btn left" aria-label="Scroll left">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+  
+    <div class="filter-scroll-container col-9">
+      <div class="filter selected">
+        <span class="material-symbols-outlined">castle</span>
+        <p>Castle</p>
+      </div>
+
+      <div class="filter">
+        <span class="material-symbols-outlined">camping</span>
+        <p>Camping</p>
+      </div>
+      
+      <div class="filter">
+        <i class="fa-solid fa-snowflake"></i>
+        <p>Arctic</p>
+      </div>
+
+      <div class="filter">
+        <i class="fa-solid fa-person-swimming"></i>
+        <p>Amazing pools</p>
+      </div>
+
+      <div class="filter">
+        <i class="fa-solid fa-mountain-sun"></i>
+        <p>Mountains</p>
+      </div>
+
+      <div class="filter">
+        <span class="material-symbols-outlined">villa</span>
+        <p>Villa</p>
+      </div>
+
+      <div class="filter">
+        <span class="material-symbols-outlined">houseboat</span>
+        <p>Houseboat</p>
+      </div>
+
+      <div class="filter">
+        <span class="material-symbols-outlined">apartment</span>
+        <p>Apartment</p>
+      </div>
+
+      <div class="filter">
+        <span class="material-symbols-outlined">yard</span>
+        <p>Yards</p>
+      </div>
+
+      <div class="filter">
+        <span class="material-symbols-outlined">bungalow</span>
+        <p>Bungalow</p>
+      </div>
+
+      <div class="filter">
+        <i class="fa-solid fa-fire"></i>
+        <p>Trending</p>
+      </div>
+
+      <div class="filter">
+        <span class="material-symbols-outlined">bed</span>
+        <p>Rooms</p>
+      </div>
+    </div>
+  
+    <button class="scroll-btn right" aria-label="Scroll right">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  
+    <button class="filter-btn col-1">
+      <i class="fa-solid fa-sliders"></i>
+      <span>Filters</span>
+    </button>
+  
+    <div class="tax-toggle col-2">
+        <input type="checkbox" id="taxToggle">
+        <label class="switch" for="taxToggle"></label>
+        <label class="toggle-label" for="taxToggle">Display total after taxes</label>
+    </div>
+      
+</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const scrollContainer = document.querySelector('.filter-scroll-container');
+      const leftBtn = document.querySelector('.scroll-btn.left');
+      const rightBtn = document.querySelector('.scroll-btn.right');
+      const filters = document.querySelectorAll('.filter');
+      
+      // Scroll buttons functionality
+      leftBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -200, behavior: 'smooth' });
+      });
+      
+      rightBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: 200, behavior: 'smooth' });
+      });
+      
+      // Filter selection
+      filters.forEach(filter => {
+        filter.addEventListener('click', () => {
+          // Toggle selected class on clicked filter
+          filter.classList.toggle('selected');
+        });
+      });
+    });
+
+    
+  </script>
+</body>
