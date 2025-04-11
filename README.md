@@ -1,112 +1,126 @@
 # Wanderlust
 
-Wanderlust is a full-stack web application for listing and booking properties. It allows users to sign up, log in, create property listings, leave reviews, and explore properties on an interactive map.
+**Wanderlust** is a full-stack web application for listing and booking properties. It allows users to sign up, log in, create property listings, leave reviews, and explore properties on an interactive map.
 
-## Features
+🚀 Live Demo: Wanderlust on Render
+---
 
-- **User Authentication**: Users can sign up, log in, and log out using `passport` and `passport-local-mongoose`.
-- **Property Listings**: Users can create, edit, and delete property listings with images uploaded to Cloudinary.
-- **Reviews**: Users can leave reviews with ratings for properties and delete their own reviews.
-- **Interactive Map**: Property locations are displayed on an interactive map using Mapbox.
-- **Responsive Design**: The application is styled with Bootstrap for a responsive and modern UI.
+## ✨ Features
 
-## Technologies Used
+- **🔐 User Authentication:** Users can sign up, log in, and log out using Passport.js.
+- **🏠 Property Listings:** Create, edit, and delete property listings with image uploads via Cloudinary.
+- **⭐ Reviews:** Leave ratings and reviews for properties; users can delete their own reviews.
+- **🗺️ Interactive Map:** Display property locations using Mapbox.
+- **📱 Responsive Design:** Built with Bootstrap for modern and responsive UI.
 
-### Backend
-- **Node.js**: JavaScript runtime for building the server-side application.
-- **Express.js**: Web framework for routing and middleware.
-- **Mongoose**: ODM for MongoDB to manage database interactions.
-- **Passport.js**: Authentication middleware for user login and session management.
-- **Joi**: Schema validation for request data.
+---
 
-### Frontend
-- **EJS**: Templating engine for rendering dynamic HTML pages.
-- **Bootstrap**: CSS framework for responsive design.
-- **Mapbox**: Interactive map integration for property locations.
+## 🛠️ Technologies Used
 
-### File Uploads
-- **Multer**: Middleware for handling file uploads.
-- **Cloudinary**: Cloud storage for uploaded images.
+### 🔧 Backend
 
-### Database
-- **MongoDB**: NoSQL database for storing user, property, and review data.
+- **Node.js:** JavaScript runtime for building the backend.
+- **Express.js:** Web framework for building RESTful APIs.
+- **Mongoose:** MongoDB ODM for data modeling and queries.
+- **Passport.js:** Authentication middleware for login and session management.
+- **Joi:** Data validation for request schemas.
 
-### Other Tools
-- **dotenv**: Environment variable management.
-- **connect-mongo**: MongoDB session store for Express sessions.
-- **express-session**: Session management for user authentication.
-- **express-flash**: Flash messages for user feedback.
+### 🎨 Frontend
 
-## Key Routes
+- **EJS:** Templating engine for dynamic page rendering.
+- **Bootstrap:** CSS framework for responsive design.
+- **Mapbox:** For rendering interactive maps.
 
-### User Routes (`routes/user.js`)
-- **Sign Up**:
-  - `GET /signup`: Renders the signup form.
-  - `POST /signup`: Handles user registration using the `userController.signup` method.
+### 📁 File Uploads
 
-- **Log In**:
-  - `GET /login`: Renders the login form.
-  - `POST /login`: Authenticates the user using `passport` and redirects them to their intended page or a default page.
+- **Multer:** Middleware for handling `multipart/form-data`.
+- **Cloudinary:** Image hosting and transformation.
 
-- **Log Out**:
-  - `GET /logout`: Logs the user out and redirects them to the homepage.
+### 💾 Database
 
-### Listing Routes (`routes/listing.js`)
-- **All Listings**:
-  - `GET /listings`: Displays all property listings.
+- **MongoDB:** NoSQL database for storing users, listings, and reviews.
 
-- **Create New Listing**:
-  - `GET /listings/new`: Renders the form to create a new property (requires login).
-  - `POST /listings`: Handles the creation of a new property, including image upload and geolocation.
+### 🧰 Utilities
 
-- **View Listing**:
-  - `GET /listings/:id`: Displays details of a specific property, including reviews and owner information.
+- **dotenv:** Environment variable management.
+- **connect-mongo:** MongoDB-based session storage.
+- **express-session:** Middleware for session handling.
+- **express-flash:** Flash messages for user feedback.
 
-- **Edit Listing**:
-  - `GET /listings/:id/edit`: Renders the form to edit a property (requires ownership).
-  - `PUT /listings/:id`: Updates the property details.
+---
 
-- **Delete Listing**:
-  - `DELETE /listings/:id`: Deletes a property (requires ownership).
+## 🔗 Key Routes Overview
 
-### Review Routes (`routes/review.js`)
-- **Add Review**:
-  - `POST /listings/:id/reviews`: Adds a review to a specific property (requires login).
+### 👤 User Routes (`routes/user.js`)
 
-- **Delete Review**:
-  - `DELETE /listings/:id/reviews/:reviewId`: Deletes a specific review (requires ownership).
+- **GET `/signup`** - Render sign-up form.
+- **POST `/signup`** - Register a new user.
+- **GET `/login`** - Render login form.
+- **POST `/login`** - Authenticate and log in user.
+- **GET `/logout`** - Log out user.
 
-### Error Handling
-- **404 Error**:
-  - Any undefined route will trigger a 404 error handled by the `ExpressError` utility.
+### 🏡 Listing Routes (`routes/listing.js`)
 
-- **Custom Error Page**:
-  - Errors are rendered using the `views/error.ejs` template.
+- **GET `/listings`** - Show all listings.
+- **GET `/listings/new`** - Form to create a new listing *(Login required)*.
+- **POST `/listings`** - Create new listing with image and location data.
+- **GET `/listings/:id`** - View a specific listing.
+- **GET `/listings/:id/edit`** - Edit form *(Only owner)*.
+- **PUT `/listings/:id`** - Update listing.
+- **DELETE `/listings/:id`** - Delete listing *(Only owner)*.
 
-## Deployment on Render
+### ✍️ Review Routes (`routes/review.js`)
 
-The application is deployed on [Render](https://render.com). Follow these steps to deploy:
+- **POST `/listings/:id/reviews`** - Add a new review *(Login required)*.
+- **DELETE `/listings/:id/reviews/:reviewId`** - Delete review *(Only review owner)*.
 
-1. **Create a Render Account**: Sign up at [Render](https://render.com).
+---
 
-2. **Create a New Web Service**:
-   - Link your GitHub repository to Render.
-   - Select the branch you want to deploy.
+## ⚠️ Error Handling
 
-3. **Set Environment Variables**:
-   - Add the following environment variables in the Render dashboard:
-     ```
-     CLOUD_NAME=your-cloudinary-cloud-name
-     CLOUD_API_KEY=your-cloudinary-api-key
-     CLOUD_API_SECRET=your-cloudinary-api-secret
-     MAP_TOKEN=your-mapbox-access-token
-     ATLAS_DB_URL=your-mongodb-atlas-url
-     SECRET=your-session-secret
-     ```
+- **404 Error:** Unmatched routes throw a custom 404 error via `ExpressError`.
+- **Custom Error Pages:** Rendered using `views/error.ejs`.
 
-**Deploy**: Render will automatically build and deploy your application. Once deployed, you can access it via the provided URL.
-**Visit**https://wonderlust-dvss.onrender.com
-   
+---
+
+## 📂 Folder Structure
+
+    ```bash
+    .
+    ├── models/
+    ├── routes/
+    ├── controllers/
+    ├── views/
+    ├── public/
+    ├── app.js
+    ├── .env
+    └── README.md
+
+---
+
+## 🚀 Deployment on Render
+
+The app is deployed on [Render](https://render.com/). Here's how to deploy:
+
+1. **Create a Render Account:** Sign up at [render.com](https://render.com).
+2. **Create a Web Service:**
+   - Connect your GitHub repository.
+   - Select the branch to deploy.
+3. **Set Environment Variables:**
+   ```bash
+   CLOUD_NAME=your-cloudinary-cloud-name
+   CLOUD_API_KEY=your-cloudinary-api-key
+   CLOUD_API_SECRET=your-cloudinary-api-secret
+   MAP_TOKEN=your-mapbox-access-token
+   ATLAS_DB_URL=your-mongodb-atlas-url
+   SECRET=your-session-secret
+
+4. **Deploy:** Render will build and deploy your app automatically.
+
+🔗 **Live App:** [https://wonderlust-dvss.onrender.com](https://wonderlust-dvss.onrender.com)
+
+---
+
 
 **Installation (Local Development)**
 1. Clone the repository:
@@ -133,6 +147,20 @@ The application is deployed on [Render](https://render.com). Follow these steps 
 
 5. Visit the application in your browser at http://localhost:8080.
 
+---
 
-**Author**
-SubhamSahu809
+📸 Screenshots 
+You can add some images here from your views (e.g., home page, listing page, review form).
+
+📌 Future Improvements 
+-Booking system integration
+-Admin dashboard
+-Pagination for listings/reviews
+-Email verification
+
+
+🧑‍💻 Author
+SubhamSahu809 
+
+
+
